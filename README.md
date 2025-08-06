@@ -15,13 +15,13 @@ The public datasets used are:
 
 ---
 
-* **dockerfiles/** – Each Dockerfile encapsulates all dependencies required to run the corresponding AutoML framework.  
+* **dockerfiles_** Each Dockerfile encapsulates all dependencies required to run the corresponding AutoML framework.  
   The images are intentionally kept independent so you can benchmark a single framework without building the others.
-* **scripts/** – Training code that reproduce the experiments reported in the manuscript.
+* **scripts_** Training code that reproduce the experiments reported in the manuscript.
 
 ---
 
-## Data Format & Directory Structure
+## Data Format
 
 Each script expects **a single CSV file named `data.csv`** inside the directory passed via the `-i / --input` flag.
 
@@ -30,49 +30,27 @@ Each script expects **a single CSV file named `data.csv`** inside the directory 
 └── data.csv
 ```
 
-* Rows = individual subjects / lesions / scans (one case per row)
-* Columns 1‒N−1 = clinical and radiomic features (numerical)
-* Last column (N) = binary target label (0 / 1).
+* Rows = individual subjects
+* Columns = clinical and radiomic features
+* Last column = binary target label (0 / 1).
 
 ---
 
-## Prerequisites
-
-* [Docker](https://docs.docker.com/get-docker/)
-
----
-
-## Building the Docker Images
+##  Docker Images
 
 All images can be built from the repository root. Below you find the exact commands (feel free to change the `-t` tag to
 whatever naming convention you prefer):
 
+> Prerequisites: [Docker](https://docs.docker.com/get-docker/)
+
 ```bash
-# 1. AutoGluon
-docker build -f dockerfiles/Dockerfile_autogluon   -t radiomics/autogluon   .
+docker build -f <path_to_dockerfile> -t <docker_image_name>:<docker_tag> .
 
-# 2. H2O AutoML
-docker build -f dockerfiles/Dockerfile_h2o         -t radiomics/h2o         .
-
-# 3. LightAutoML
-docker build -f dockerfiles/Dockerfile_ligthautoml -t radiomics/lightautoml .
-
-# 4. MLjar Supervised
-docker build -f dockerfiles/Dockerfile_mljar       -t radiomics/mljar       .
-
-# 5. PyCaret
-docker build -f dockerfiles/Dockerfile_pycaret     -t radiomics/pycaret     .
-
-# 6. TPOT
-docker build -f dockerfiles/Dockerfile_tpot        -t radiomics/tpot        .
+# Example
+docker build -f dockerfiles/Dockerfile_autogluon  -t automl:autogluon  .
 ```
 
----
-
-## Running the Containers
-
-The minimal command to launch an experiment is:
-
 ```bash
-  docker run -v <path_to_data>:/folder <docker_image>:<docker_tag> -i /folder
+# Running the containers
+docker run -v <path_to_data>:/folder <docker_image>:<docker_tag> -i /folder
 ```
