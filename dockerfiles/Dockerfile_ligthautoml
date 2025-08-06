@@ -1,0 +1,12 @@
+FROM python:3.10
+
+# Update pip (for python 3.10)
+RUN python -m ensurepip --upgrade
+RUN pip install --no-cache-dir --upgrade pip setuptools
+
+WORKDIR /comparison
+COPY LightAutoML.py /comparison/LightAutoML.py
+
+RUN pip install -U lightautoml==0.4.1
+
+ENTRYPOINT ["python", "LightAutoML.py"]

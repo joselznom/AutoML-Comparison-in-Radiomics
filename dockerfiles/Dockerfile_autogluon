@@ -1,0 +1,12 @@
+FROM python:3.10
+
+# Update pip (for python 3.10)
+RUN python -m ensurepip --upgrade
+RUN pip install --no-cache-dir --upgrade pip setuptools
+
+WORKDIR /comparison
+COPY AutoGluon.py /comparison/AutoGluon.py
+
+RUN pip install autogluon==1.1.0
+
+ENTRYPOINT ["python", "AutoGluon.py"]

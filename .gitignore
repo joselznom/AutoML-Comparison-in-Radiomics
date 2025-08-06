@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------
+# Global ignores (operating system / editor / environment noise)
+# ---------------------------------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.dylib
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# pytest
+.cache/
+
+# Logs & profiling
+*.log
+*.out
+profile-report*/
+
+# ----------------------------------------------------------------
+# Project-specific (generated during training / experiments)
+# ----------------------------------------------------------------
+# Folders that scripts create for trained models & results
+*_Models/
+results/
+
+# Large raw datasets – place them inside `data/` (ignored by default)
+# Comment this line out if you want to version small sample datasets
+/data/
+
+# ----------------------------------------------------------------
+# Docker
+# ----------------------------------------------------------------
+# Ignore dangling images & containers metadata
+*.pid
+
+# ----------------------------------------------------------------
+# End of file
+# ----------------------------------------------------------------

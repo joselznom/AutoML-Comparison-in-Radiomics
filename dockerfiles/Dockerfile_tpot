@@ -1,0 +1,19 @@
+FROM python:3.8
+
+RUN apt-get update && apt-get install -y \
+    libhdf5-dev \
+    python3-dev \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python -m ensurepip --upgrade
+RUN pip install --no-cache-dir --upgrade pip setuptools
+
+RUN pip install numpy scipy scikit-learn pandas joblib torch deap update_checker tqdm stopit xgboost matplotlib
+RUN pip install tpot==0.12.1
+
+WORKDIR /comparison
+COPY TPOT.py /comparison/TPOT.py
+
+
+ENTRYPOINT ["python", "TPOT.py"]

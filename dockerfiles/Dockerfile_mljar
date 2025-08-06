@@ -1,0 +1,12 @@
+FROM python:3.10
+
+# Update pip (for python 3.10)
+RUN python -m ensurepip --upgrade
+RUN pip install --no-cache-dir --upgrade pip setuptools
+
+WORKDIR /comparison
+COPY MLjar.py /comparison/MLjar.py
+
+RUN pip install mljar-supervised==1.1.9
+
+ENTRYPOINT ["python", "MLjar.py"]

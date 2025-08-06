@@ -1,0 +1,12 @@
+FROM python:3.10
+
+# Update pip (for python 3.10)
+RUN python -m ensurepip --upgrade
+RUN pip install --no-cache-dir --upgrade pip setuptools
+
+RUN pip install pycaret==3.3.2
+
+WORKDIR /comparison
+COPY PyCaret.py /comparison/PyCaret.py
+
+ENTRYPOINT ["python", "PyCaret.py"]
